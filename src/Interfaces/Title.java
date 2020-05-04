@@ -1,3 +1,7 @@
+/* 
+ * @author Luiz
+ */
+
 package Interfaces;
 
 public interface Title<T> {
