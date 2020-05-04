@@ -1,3 +1,8 @@
+/*
+ * @author Diego
+ * 
+ */
+
 package Interfaces;
 
 public interface Music<T extends Title> {
