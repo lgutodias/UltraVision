@@ -8,6 +8,7 @@ package Model;
 
 public class Customer {
 	
+	//Attributes
 	private String fname;
 	private String lname;
 	private String email;
@@ -16,7 +17,7 @@ public class Customer {
 	private MembershipCard memberid = new MembershipCard();
 	
 	
-	// GETTERS AND SETTERS
+	// Getters and Setters
 	public String getFname() {
 		return fname;
 	}
