@@ -1,5 +1,5 @@
-/* 
- * @author Luiz
+/** 
+ * @author luiz
  */
 
 package Interfaces;
