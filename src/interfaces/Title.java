@@ -15,10 +15,10 @@ public interface Title<T> {
 	public String getGenre();
 	public T setGenre(String genre);
 	
-	public int getYearOfRelease();
-	public T setYearOfRelease(int year);
+	public int getYear();
+	public T setYear(int year);
 	
-	public String getMediaFormat();
-	public T setMediaFormat(String media);
+	public String getMedia();
+	public T setMedia(String media);
 
 }

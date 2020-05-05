@@ -1,61 +1,74 @@
-/** 
- * @author luiz
- */
-
 package model;
 
 import interfaces.Title;
 
-public abstract class Titles implements Title<Titles> {
+public abstract class Titles implements Title {
 	
-	// Attributes
 	private int id;
 	private String title;
 	private String genre;
 	private int year;
 	private String media;
-	
-	
-	// Getters and Setters
+
+	@Override
 	public int getId() {
-		return id;
+		return this.id;
 	}
+
+	@Override
 	public Titles setId(int id) {
 		this.id = id;
 		return this;
 	}
+
+	@Override
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
+
+	@Override
 	public Titles setTitle(String title) {
 		this.title = title;
 		return this;
 	}
+
+	@Override
 	public String getGenre() {
-		return genre;
+		return this.genre;
 	}
+
+	@Override
 	public Titles setGenre(String genre) {
 		this.genre = genre;
 		return this;
 	}
-	public int getYearOfRelease() {
-		return year;
+
+	@Override
+	public int getYear() {
+		return this.year;
 	}
-	public Titles setYearOfRelease(int year) {
+
+	@Override
+	public Titles setYear(int year) {
 		this.year = year;
 		return this;
 	}
-	public String getMediaFormat() {
-		return media;
+
+	@Override
+	public String getMedia() {
+		return this.media;
 	}
-	public Titles setMediaFormat(String media) {
+
+	@Override
+	public Titles setMedia(String media) {
 		this.media = media;
 		return this;
 	}
+
 	@Override
 	public String toString() {
-		return "Titles [id=" + id + ", title=" + title + ", genre=" + genre 
-				+ ", year=" + year + ", media=" + media + "]";
+		return "Titles [id=" + id + ", title=" + title + ", genre=" + genre + ", year=" + year + ", media=" + media
+				+ "]";
 	}
 	
 }

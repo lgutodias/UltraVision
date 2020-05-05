@@ -9,6 +9,7 @@ import interfaces.Title;
 import model.Customer;
 import model.Keyboard;
 import model.Rental;
+import model.TitleFactory;
 
 public class Main {
 	
@@ -22,6 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		boolean running = false;
+		TitleFactory tf = new TitleFactory();
 		
 		
 		do {
@@ -76,7 +78,7 @@ public class Main {
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(makeAlbum(id++, artist, title, genre, year, media));
+				titles.add(tf.makeAlbum(id++, artist, title, genre, year, media));
 			break;
 			
 			}
