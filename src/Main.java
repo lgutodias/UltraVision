@@ -100,10 +100,45 @@ public class Main {
 			
 			case "4":
 				//Option to add a Box Set
+				title = Keyboard.textInput("ENTER BOX SET TITLE: ");
+				int season = Keyboard.numberInput("ENTER SEASON NUMBER: ");
+				genre = Keyboard.textInput("ENTER GENRE: ");
+				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
+				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				
+				titles.add(TitleFactory.makeBoxSet(id++, title, season, genre, year,
+						media));
+			break;
 			
+			case "5":
+				//Option to search a Title
+				String word = Keyboard.textInput("ENTER A KEY WORD: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====");
+				TitleFactory.displayTitle(TitleFactory.searchTitle(titles, word));
+			break;
+			
+			case "6":
+				//Option to add a Customer
+				String fname = Keyboard.textInput("ENTER FIRST NAME: ");
+				String lname = Keyboard.textInput("ENTER LAST NAME: ");
+				String email = "";
+					do {
+						email = Keyboard.textInput("ENTER EMAIL: ");
+					} while (!isEmail(email));
+				
+				int creditcard  = Keyboard.numberInput("ENTER CREDIT CARD: ");
+				
+				customers.add(makeCustomer(idc++, fname, lname, email, creditcard));
+			break;
+			
+			default:
+				System.out.println("*** SORRY! INVALID OPTION ***\n");
+				break;
 			}
+			
+			//Ternary operator
+			running = (Keyboard.textInput("=ENTER (Y)YES FOR MAIN MENU OR (N)NO CONTINUE=")
+					.equalsIgnoreCase("y")) ? true : false;
 			
 			
 		} while(!running);

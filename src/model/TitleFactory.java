@@ -4,6 +4,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.Title;
@@ -14,6 +15,19 @@ public final class TitleFactory {
 		for (Title t : p) {
 			System.out.println(t);
 		}
+	}
+	
+public static List<Title> searchTitle(List<Title> p, String word) {
+		
+		List<Title> l = new ArrayList<>();
+		word = word.toLowerCase();
+		for (Title t : p) {
+			if (t.getTitle().toLowerCase().contains(word) || t.getGenre()
+					.toLowerCase().contains(word)) {
+				l.add(t);
+			}
+		}
+		return l;
 	}
 	
 	public static Album makeAlbum(int id, String artist, String title,
@@ -35,7 +49,7 @@ public final class TitleFactory {
 			.setGenre(genre).setYear(year).setMedia(media).setId(id);
 	}
 	
-	public static BoxSet makeBoxSet(int id, int season, String title,
+	public static BoxSet makeBoxSet(int id, String title, int season,
 			String genre, int year, String media) {
 		return (BoxSet) new BoxSet().setSeason(season).setTitle(title)
 			.setGenre(genre).setYear(year).setMedia(media).setId(id);
