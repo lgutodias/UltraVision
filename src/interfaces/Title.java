@@ -4,21 +4,21 @@
 
 package interfaces;
 
-public interface Title<T> {
+public interface Title {
 	
 	public int getId();
-	public T setTitle(int id);
+	public void setTitle(int id);
 	
 	public String getTitle();
-	public T setTitle(String title);
+	public void setTitle(String title);
 	
 	public String getGenre();
-	public T setGenre(String genre);
+	public void setGenre(String genre);
 	
 	public int getYearOfRelease();
-	public T setYearOfRelease(int year);
+	public void setYearOfRelease(int year);
 	
 	public String getMediaFormat();
-	public T setMediaFormat(String media);
+	public void setMediaFormat(String media);
 
 }
