@@ -10,28 +10,33 @@ import interfaces.Music;
 
 public class MusicLover implements MembershipPlan<Music> {
 	
-	private List<Music> musics = new ArrayList<>();
+	private List<Music> music = new ArrayList<>();
 
 	@Override
 	public List<Music> getAll(){
-		return this.musics;
+		return this.music;
 		
 	}
 	@Override
 	public void delete(int index) {
-		this.musics.remove(this.musics.get(index));
+		this.music.remove(this.music.get(index));
 	}
 	@Override
 	public void delete(Music m) {
-		this.musics.add(m);
+		this.music.add(m);
 	}
 	@Override
 	public int size() {
-		return this.musics.size();
+		return this.music.size();
 	}
 	@Override
 	public Music get(int index) {
-		return this.musics.get(index);
+		return this.music.get(index);
+	}
+	@Override
+	public void add(Music m) {
+		music.add(m);
+		
 	}
 	
 	

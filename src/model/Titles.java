@@ -6,7 +6,7 @@ package model;
 
 import interfaces.Title;
 
-public abstract class Titles implements Title {
+public abstract class Titles implements Title<Titles> {
 	
 	// Attributes
 	private int id;
@@ -38,18 +38,19 @@ public abstract class Titles implements Title {
 		this.genre = genre;
 		return this;
 	}
-	public int getYear() {
+	public int getYearOfRelease() {
 		return year;
 	}
-	public Titles setYear(int year) {
+	public Titles setYearOfRelease(int year) {
 		this.year = year;
 		return this;
 	}
-	public String getMedia() {
+	public String getMediaFormat() {
 		return media;
 	}
-	public void setMedia(String media) {
+	public Titles setMediaFormat(String media) {
 		this.media = media;
+		return this;
 	}
 	@Override
 	public String toString() {
