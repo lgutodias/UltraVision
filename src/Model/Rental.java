@@ -27,7 +27,7 @@ public class Rental {
 		return this.customer;
 	}
 	public void setTitle(List<Title> titles) {
-		return this.titles = titles;
+		this.titles = titles;
 	}
 	public List<Title> getTitles(List<Title> titles){
 		return this.titles = titles;
