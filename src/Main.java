@@ -18,12 +18,17 @@ public class Main {
 	static List<Rental> rentals = new ArrayList<>();
 	
 	static int id = 1;
+	//static int idc = 1;
+	//static int year;
+	//static String title;
+	//static String genre;
+	//static String media;
 	
 
 	public static void main(String[] args) {
 		
 		boolean running = false;
-		TitleFactory tf = new TitleFactory();
+		//TitleFactory tf = new TitleFactory();
 		
 		
 		do {
@@ -71,15 +76,32 @@ public class Main {
 			break;
 			
 			case "2":
-				// Option to add an album
+				// Option to add an Album
 				String artist = Keyboard.textInput("ENTER ARTIST/BAND: ");
 				String title = Keyboard.textInput("ENTER TITLE: ");
 				String genre = Keyboard.textInput("ENTER GENRE: ");
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(tf.makeAlbum(id++, artist, title, genre, year, media));
+				titles.add(TitleFactory.makeAlbum(id++, artist, title, genre, year, media));
 			break;
+			
+			case "3":
+				//Option to add a Movie
+				title = Keyboard.textInput("ENTER MOVIE TITLE: ");
+				genre = Keyboard.textInput("ENTER GENRE: ");
+				String director = Keyboard.textInput("ENTER DIRECTOR: ");
+				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
+				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				
+				titles.add(TitleFactory.makeMovie(id++, director, title, genre, year,
+						media));
+			break;
+			
+			case "4":
+				//Option to add a Box Set
+				
+				
 			
 			}
 			
