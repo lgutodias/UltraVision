@@ -1,7 +1,7 @@
 /**
  * @author diego
  */
-package Model;
+package model;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

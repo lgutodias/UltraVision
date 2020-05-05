@@ -3,7 +3,7 @@
  * 
  */
 
-package Interfaces;
+package interfaces;
 
 public interface TV<T extends Title> {
 	

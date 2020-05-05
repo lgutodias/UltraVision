@@ -1,9 +1,9 @@
 /**
  * @author diego
  */
-package Model;
+package model;
 
-import Interfaces.Video;
+import interfaces.Video;
 
 public final class Movie extends Titles implements Video<Movie> {
 	

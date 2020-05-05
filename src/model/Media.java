@@ -1,7 +1,7 @@
 /**
  * @author diego
  */
-package Model;
+package model;
 
 public class Media {
 	

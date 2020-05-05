@@ -2,7 +2,7 @@
  * @author luiz
  */
 
-package Interfaces;
+package interfaces;
 
 import java.util.List;
 

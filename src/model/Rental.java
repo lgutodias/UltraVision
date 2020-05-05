@@ -1,12 +1,12 @@
 /**
  * @author diego
  */
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.Title;
+import interfaces.Title;
 
 public class Rental {
 	

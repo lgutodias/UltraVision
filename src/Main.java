@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.Title;
-import Model.Customer;
+import interfaces.Title;
+import model.Customer;
 
 public class Main {
 	

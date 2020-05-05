@@ -2,9 +2,9 @@
  * @author Diego
  */
 
-package Model;
+package model;
 
-import Interfaces.Music;
+import interfaces.Music;
 
 public final class Album extends Titles implements Music<Album> {
 	

@@ -2,9 +2,9 @@
  * @author luiz
  */
 
-package Model;
+package model;
 
-import Interfaces.Title;
+import interfaces.Title;
 
 public abstract class Titles implements Title {
 	

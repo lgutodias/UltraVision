@@ -3,7 +3,7 @@
  * 
  */
 
-package Interfaces;
+package interfaces;
 
 public interface Music<T extends Title> {
 
