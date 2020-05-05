@@ -7,7 +7,7 @@ package interfaces;
 
 public interface Music<T extends Title> {
 
-		public String getAtist();
+		public String getArtist();
 		public T setArtist(String artist);
 
 }
