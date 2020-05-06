@@ -5,9 +5,9 @@
 
 package interfaces;
 
-public interface Video extends Title {
+public interface Video <T extends Title> {
 
 	public String getDirector();
-	public void setDirector(String director);
+	public T setDirector(String director);
 	
 }
