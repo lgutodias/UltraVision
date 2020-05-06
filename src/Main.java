@@ -7,6 +7,7 @@ import java.util.List;
 
 import interfaces.Title;
 import model.Customer;
+import model.CustomerFactory;
 import model.Keyboard;
 import model.Rental;
 import model.TitleFactory;
@@ -18,7 +19,7 @@ public class Main {
 	static List<Rental> rentals = new ArrayList<>();
 	
 	static int id = 1;
-	//static int idc = 1;
+	static int idc = 1;
 	//static int year;
 	//static String title;
 	//static String genre;
@@ -126,9 +127,12 @@ public class Main {
 						email = Keyboard.textInput("ENTER EMAIL: ");
 					} while (!isEmail(email));
 				
-				int creditcard  = Keyboard.numberInput("ENTER CREDIT CARD: ");
+				String creditcard  = "";
+					do {
+						creditcard = Keyboard.textInput("ENTER CREDIT CARD: ");
+					} while (!isCreditCard(creditcard));
 				
-				customers.add(makeCustomer(idc++, fname, lname, email, creditcard));
+				customers.add(CustomerFactory.makeCustomer(idc++, fname, lname, email, creditcard));
 			break;
 			
 			default:
@@ -144,6 +148,17 @@ public class Main {
 		} while(!running);
 		
 
+	}
+	
+	// Boolean to validate Email pattern
+	static boolean isEmail(String email) {
+		return email.matches("^[_a-z0-9-\\+]+(\\.[_a-z0-9-]+)*@"+ "[a-z0-9-]"
+	            + "+(\\.[a-z0-9]+)*(\\.[a-z]{2,})$");
+	}
+	
+	//Boolean to validate Credit Card number pattern
+	public static boolean isCreditCard(String creditcard) {
+		return creditcard.matches("(\\d{4}[-. ]?){4}|\\d{4}[-. ]?\\d{6}[-. ]?\\d{5}");
 	}
 
 }

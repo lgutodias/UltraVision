@@ -13,7 +13,7 @@ public class Customer {
 	private String lname;
 	private String email;
 	private int id;
-	private int creditcard;
+	private String creditcard;
 	private MembershipCard memberid = new MembershipCard();
 	
 	
@@ -46,10 +46,10 @@ public class Customer {
 		this.id = id;
 		return this;
 	}
-	public int getCreditcard() {
+	public String getCreditcard() {
 		return creditcard;
 	}
-	public Customer setCreditcard(int creditcard) {
+	public Customer setCreditcard(String creditcard) {
 		this.creditcard = creditcard;
 		return this;
 	}
