@@ -10,8 +10,10 @@ import interfaces.Music;
 
 public class MusicLover implements MembershipPlan<Music> {
 	
+	//Attribute
 	private List<Music> music = new ArrayList<>();
-
+	
+	
 	@Override
 	public List<Music> getAll(){
 		return this.music;
