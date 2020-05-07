@@ -29,7 +29,6 @@ public class Main {
 	public static void main(String[] args) {
 		
 		boolean running = false;
-		//TitleFactory tf = new TitleFactory();
 		
 		
 		do {
@@ -82,7 +81,11 @@ public class Main {
 				String title = Keyboard.textInput("ENTER TITLE: ");
 				String genre = Keyboard.textInput("ENTER GENRE: ");
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
-				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				//String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				String media  = "";
+				do {
+					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				} while (!isMedia(media));
 				
 				titles.add(TitleFactory.makeAlbum(id++, artist, title, genre, year, media));
 			break;
@@ -147,6 +150,21 @@ public class Main {
 			
 		} while(!running);
 		
+		
+		//Default customers
+		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda",
+				"d.deronda@hotmail.com", "4451653694824657"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Hans", "Castorp",
+				"hanscastorp15@yahoo.com", "5568925842276361"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Tom", "Jones",
+				"tjoness@hotmail.com", "5525344856451997"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Molly", "Bloom",
+				"molly-bloom@gmail.com", "5468223523238497"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Anne", "Elliot",
+				"lady.aelliot@yahoo.com", "4754995472713938"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit",
+				"louisap@gmail.com", "4519242548200255"));
+		
 
 	}
 	
@@ -160,5 +178,11 @@ public class Main {
 	public static boolean isCreditCard(String creditcard) {
 		return creditcard.matches("(\\d{4}[-. ]?){4}|\\d{4}[-. ]?\\d{6}[-. ]?\\d{5}");
 	}
+	
+	
+	public static boolean isMedia(String media) {
+		return media.equals("CD | DVD | BLU-RAY");
+	}
+	
 
 }

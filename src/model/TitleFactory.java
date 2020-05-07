@@ -25,7 +25,7 @@ public static List<Title> searchTitle(List<Title> p, String word) {
 			if (t.getTitle().toLowerCase().contains(word) || t.getGenre()
 					.toLowerCase().contains(word)) {
 				l.add(t);
-			}
+			} 
 		}
 		return l;
 	}
