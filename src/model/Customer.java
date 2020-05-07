@@ -62,9 +62,9 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [fname=" + fname + ", lname=" + lname + ", email=" + ","
-				+ email + ", id=" + id + ", creditcard=" + creditcard 
-				+ ", poins=" + this.memberid.getPoints() + "]";
+		return "Customer [MEMBERSHIP ID = " + id + ", NAME = " + fname + "_" + lname + ", EMAIL = " +
+				email + ", CREDIT CARD = " + creditcard + ", POINTS = " 
+				+ this.memberid.getPoints() + "]";
 	}
 	
 	

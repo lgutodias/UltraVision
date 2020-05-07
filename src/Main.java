@@ -151,6 +151,9 @@ public class Main {
 		} while(!running);
 		
 		
+		
+		
+		
 		//Default customers
 		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda",
 				"d.deronda@hotmail.com", "4451653694824657"));
@@ -164,6 +167,19 @@ public class Main {
 				"lady.aelliot@yahoo.com", "4754995472713938"));
 		customers.add(CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit",
 				"louisap@gmail.com", "4519242548200255"));
+		
+		//Default titles
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2", "Innocence + Experience", "Rock", 2016, "Blu-ray"));
+		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire", "R&B", 2012, "CD"));
+		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004, "DVD"));
+		
+		
+		
+		System.out.println("========== Customer ============");
+		CustomerFactory.displayCustomer(customers);
+		
+		System.out.println("========== Title ============");
+		TitleFactory.displayTitle(titles);
 		
 
 	}
