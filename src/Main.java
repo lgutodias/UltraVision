@@ -167,18 +167,30 @@ public class Main {
 				"louisap@gmail.com", "4519242548200255"));
 		
 		//Default titles
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2", "Innocence + Experience", "Rock", 2016, "Blu-ray"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Game of Thrones", 6, "Drama", 2016, "Blu-ray"));
-		titles.add(TitleFactory.makeMovie(id++, "Jake Kasdan", "Jumanji: Next Level", "Comedy", 2019, "Blu-ray"));
-		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire", "R&B", 2012, "CD"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steve McQueen", "12 Years a Slave", "Drama", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "Dua Lipa", "Future Nostalgia", "Pop", 2020, "CD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Foo Fighters", "Live at Wembley Stadium", "Rock", 2008, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Frank Darabont", "The Shawshank Redemption", "Drama", 1995, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steven Spielberg", "Saving Private Ryan", "War", 1998, "DVD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Bob Marley", "Uprising Live!", "Reggae", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "David Guetta", "7", "Dance", 2018, "CD"));
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2",
+				"Innocence + Experience", "Rock", 2016, "Blu-ray"));
+		titles.add(TitleFactory.makeBoxSet(id++, "Game of Thrones", 6, "Drama",
+				2016, "Blu-ray"));
+		titles.add(TitleFactory.makeMovie(id++, "Jake Kasdan",
+				"Jumanji: Next Level", "Comedy", 2019, "Blu-ray"));
+		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire",
+				"R&B", 2012, "CD"));
+		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004,
+				"DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Steve McQueen",
+				"12 Years a Slave", "Drama", 2014, "DVD"));
+		titles.add(TitleFactory.makeAlbum(id++, "Dua Lipa", "Future Nostalgia",
+				"Pop", 2020, "CD"));
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Foo Fighters",
+				"Live at Wembley Stadium", "Rock", 2008, "DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Frank Darabont",
+				"The Shawshank Redemption", "Drama", 1995, "DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Steven Spielberg",
+				"Saving Private Ryan", "War", 1998, "DVD"));
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Bob Marley",
+				"Uprising Live!", "Reggae", 2014, "DVD"));
+		titles.add(TitleFactory.makeAlbum(id++, "David Guetta", "7", "Dance",
+				2018, "CD"));
 		
 		
 		
@@ -203,9 +215,9 @@ public class Main {
 	}
 	
 	
-	public static boolean isMedia(String media) {
+	/*public static boolean isMedia(String media) {
 		return media.equals(?:CD|DVD);
-	}
+	}*/
 	
 
 }
