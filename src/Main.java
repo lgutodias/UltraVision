@@ -21,12 +21,42 @@ public class Main {
 	
 	static int id = 1;
 	static int idc = 1;
+	static String planType;
 	
 	
 	public static void main(String[] args) {
 		
 		
 		boolean running = false;
+		
+		//Default customers
+		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda", "d.deronda@hotmail.com",
+				"4451653694824657", "PR"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Hans", "Castorp", "hanscastorp15@yahoo.com",
+				"5568925842276361", "ML"));
+		customers.add(
+				CustomerFactory.makeCustomer(idc++, "Tom", "Jones", "tjoness@hotmail.com", "5525344856451997", "VL"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Molly", "Bloom", "molly-bloom@gmail.com", "5468223523238497",
+				"TV"));
+		customers.add(CustomerFactory.makeCustomer(idc++, "Anne", "Elliot", "lady.aelliot@yahoo.com",
+				"4754995472713938", "PR"));
+		customers.add(
+				CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit", "louisap@gmail.com", "4519242548200255", "ML"));
+
+		// Default titles
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2", "Innocence + Experience", "Rock", 2016, "Blu-ray"));
+		titles.add(TitleFactory.makeBoxSet(id++, "Game of Thrones", 6, "Drama", 2016, "Blu-ray"));
+		titles.add(TitleFactory.makeMovie(id++, "Jake Kasdan", "Jumanji: Next Level", "Comedy", 2019, "Blu-ray"));
+		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire", "R&B", 2012, "CD"));
+		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004, "DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Steve McQueen", "12 Years a Slave", "Drama", 2014, "DVD"));
+		titles.add(TitleFactory.makeAlbum(id++, "Dua Lipa", "Future Nostalgia", "Pop", 2020, "CD"));
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Foo Fighters", "Live at Wembley Stadium", "Rock", 2008,
+				"DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Frank Darabont", "The Shawshank Redemption", "Drama", 1995, "DVD"));
+		titles.add(TitleFactory.makeMovie(id++, "Steven Spielberg", "Saving Private Ryan", "War", 1998, "DVD"));
+		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Bob Marley", "Uprising Live!", "Reggae", 2014, "DVD"));
+		titles.add(TitleFactory.makeAlbum(id++, "David Guetta", "7", "Dance", 2018, "CD"));
 		
 		
 		do {
@@ -45,6 +75,9 @@ public class Main {
 			
 			case "1":
 				// Option to rent a title
+				
+				CustomerFactory.displayCustomer(customers);
+				
 				int counter = 0;
 				int idCust = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
 				
@@ -57,6 +90,7 @@ public class Main {
 				
 				if(counter < 4) {
 					--idCust;
+					TitleFactory.display(titles, customers.get(idCust));
 					int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ")-1;
 					
 					Title title = titles.get(idTitle);
@@ -79,11 +113,11 @@ public class Main {
 				String title = Keyboard.textInput("ENTER TITLE: ");
 				String genre = Keyboard.textInput("ENTER GENRE: ");
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
-				//String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				String media  = "";
+				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				/*String media  = "";
 				do {
 					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				} while (!isMedia(media));
+				} while (!isMedia(media));*/
 				
 				titles.add(TitleFactory.makeAlbum(id++, artist, title, genre, year, media));
 			break;
@@ -133,7 +167,7 @@ public class Main {
 						creditcard = Keyboard.textInput("ENTER CREDIT CARD: ");
 					} while (!isCreditCard(creditcard));
 				
-				customers.add(CustomerFactory.makeCustomer(idc++, fname, lname, email, creditcard));
+				customers.add(CustomerFactory.makeCustomer(idc++, fname, lname, email, creditcard, planType));
 			break;
 			
 			default:
@@ -147,50 +181,6 @@ public class Main {
 			
 			
 		} while(!running);
-		
-		
-		
-		
-		
-		//Default customers
-		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda",
-				"d.deronda@hotmail.com", "4451653694824657"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Hans", "Castorp",
-				"hanscastorp15@yahoo.com", "5568925842276361"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Tom", "Jones",
-				"tjoness@hotmail.com", "5525344856451997"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Molly", "Bloom",
-				"molly-bloom@gmail.com", "5468223523238497"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Anne", "Elliot",
-				"lady.aelliot@yahoo.com", "4754995472713938"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit",
-				"louisap@gmail.com", "4519242548200255"));
-		
-		//Default titles
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2",
-				"Innocence + Experience", "Rock", 2016, "Blu-ray"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Game of Thrones", 6, "Drama",
-				2016, "Blu-ray"));
-		titles.add(TitleFactory.makeMovie(id++, "Jake Kasdan",
-				"Jumanji: Next Level", "Comedy", 2019, "Blu-ray"));
-		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire",
-				"R&B", 2012, "CD"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004,
-				"DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steve McQueen",
-				"12 Years a Slave", "Drama", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "Dua Lipa", "Future Nostalgia",
-				"Pop", 2020, "CD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Foo Fighters",
-				"Live at Wembley Stadium", "Rock", 2008, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Frank Darabont",
-				"The Shawshank Redemption", "Drama", 1995, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steven Spielberg",
-				"Saving Private Ryan", "War", 1998, "DVD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Bob Marley",
-				"Uprising Live!", "Reggae", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "David Guetta", "7", "Dance",
-				2018, "CD"));
 		
 		
 		

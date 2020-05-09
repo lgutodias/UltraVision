@@ -14,6 +14,7 @@ public class Customer {
 	private String email;
 	private int id;
 	private String creditcard;
+	private String planType;
 	private MembershipCard memberid = new MembershipCard();
 	
 	
@@ -51,6 +52,14 @@ public class Customer {
 	}
 	public Customer setCreditcard(String creditcard) {
 		this.creditcard = creditcard;
+		return this;
+	}
+	
+	public String getPlanType() {
+		return this.planType;
+	}
+	public Customer setPlanType(String planType) {
+		this.planType = planType;
 		return this;
 	}
 	public MembershipCard getMemberid() {

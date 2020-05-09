@@ -11,13 +11,30 @@ import interfaces.Title;
 
 public final class TitleFactory {
 	
+	public static void display(List<Title>p, Customer c) {
+		String content = "";
+		for (Title t : p) {
+			
+			if (t.getClass().getName().equalsIgnoreCase(c.getPlanType())) {
+				
+				content += t.toString() + "\n";
+				System.out.println(t);
+			} else if (c.getPlanType().equalsIgnoreCase("PR")) {
+				content += t.toString() + "\n";
+				System.out.println(t);
+			}
+		}
+		Keyboard.textOutput(content);
+	}
+	
+	
 	public static void displayTitle(List<Title> p) {
 		for (Title t : p) {
 			System.out.println(t);
 		}
 	}
 	
-public static List<Title> searchTitle(List<Title> p, String word) {
+	public static List<Title> searchTitle(List<Title> p, String word) {
 		
 		List<Title> l = new ArrayList<>();
 		word = word.toLowerCase();

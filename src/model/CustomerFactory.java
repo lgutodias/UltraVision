@@ -11,9 +11,9 @@ public class CustomerFactory {
 	}
 	
 	public static Customer makeCustomer(int id, String fname, String lname,
-			String email, String creditcard) {
+			String email, String creditcard, String planType) {
 		return new Customer().setFname(fname).setLname(lname).setEmail(email)
-				.setCreditcard(creditcard).setId(id);
+				.setCreditcard(creditcard).setId(id).setPlanType(planType);
 	}
 	
 

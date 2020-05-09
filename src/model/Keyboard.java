@@ -6,6 +6,8 @@ package model;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 
 /* This class we had Raul's helps because our project our project was loaded of
 Scanners and it was conflicting with among them, so Raul taught this methods */ 
@@ -29,6 +31,10 @@ public class Keyboard {
 			numberInput(prompt);
 		}
 		return number;
+	}
+	
+	public static void textOutput(String content) {
+		JOptionPane.showMessageDialog(null, content);
 	}
 
 }
