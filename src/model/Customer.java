@@ -14,6 +14,7 @@ public class Customer {
 	private String email;
 	private int id;
 	private String creditcard;
+	private String planType;
 	private MembershipCard memberid = new MembershipCard();
 	
 	
@@ -53,6 +54,14 @@ public class Customer {
 		this.creditcard = creditcard;
 		return this;
 	}
+	
+	public String getPlanType() {
+		return this.planType;
+	}
+	public Customer setPlanType(String planType) {
+		this.planType = planType;
+		return this;
+	}
 	public MembershipCard getMemberid() {
 		return memberid;
 	}
@@ -62,9 +71,9 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [fname=" + fname + ", lname=" + lname + ", email=" + ","
-				+ email + ", id=" + id + ", creditcard=" + creditcard 
-				+ ", poins=" + this.memberid.getPoints() + "]";
+		return "Customer [MEMBERSHIP ID = " + id + ", NAME = " + fname + "_" + lname + ", EMAIL = " +
+				email + ", CREDIT CARD = " + creditcard + ", POINTS = " 
+				+ this.memberid.getPoints() + "]";
 	}
 	
 	

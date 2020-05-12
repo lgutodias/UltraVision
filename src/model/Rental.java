@@ -4,6 +4,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import interfaces.Title;
@@ -37,6 +38,7 @@ public class Rental {
 		this.titles.add(title);
 		return this;
 	}
+	
 	@Override
 	public String toString() {
 		
