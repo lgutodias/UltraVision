@@ -33,15 +33,15 @@ public class Main {
 		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda", "d.deronda@hotmail.com",
 				"4451653694824657", "PR"));
 		customers.add(CustomerFactory.makeCustomer(idc++, "Hans", "Castorp", "hanscastorp15@yahoo.com",
-				"5568925842276361", "ML"));
+				"5568925842276361", "Music"));
 		customers.add(
-				CustomerFactory.makeCustomer(idc++, "Tom", "Jones", "tjoness@hotmail.com", "5525344856451997", "VL"));
+				CustomerFactory.makeCustomer(idc++, "Tom", "Jones", "tjoness@hotmail.com", "5525344856451997", "Video"));
 		customers.add(CustomerFactory.makeCustomer(idc++, "Molly", "Bloom", "molly-bloom@gmail.com", "5468223523238497",
 				"TV"));
 		customers.add(CustomerFactory.makeCustomer(idc++, "Anne", "Elliot", "lady.aelliot@yahoo.com",
 				"4754995472713938", "PR"));
 		customers.add(
-				CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit", "louisap@gmail.com", "4519242548200255", "ML"));
+				CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit", "louisap@gmail.com", "4519242548200255", "Music"));
 
 		// Default titles
 		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2", "Innocence + Experience", "Rock", 2016, "Blu-ray"));
@@ -75,7 +75,6 @@ public class Main {
 			
 			case "1":
 				// Option to rent a title
-				
 				CustomerFactory.displayCustomer(customers);
 				
 				int counter = 0;

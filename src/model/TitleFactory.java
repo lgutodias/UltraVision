@@ -11,18 +11,21 @@ import interfaces.Title;
 
 public final class TitleFactory {
 	
-	public static void display(List<Title>p, Customer c) {
+	public static void display(List<Title> p, Customer c) {
 		String content = "";
 		for (Title t : p) {
 			
-			if (t.getClass().getName().equalsIgnoreCase(c.getPlanType())) {
+			Class<?> cls = t.getClass();
+			String className = cls.getInterfaces()[0].getSimpleName();
+			
+			if (className.equalsIgnoreCase(c.getPlanType())) {
 				
 				content += t.toString() + "\n";
 				System.out.println(t);
 			} else if (c.getPlanType().equalsIgnoreCase("PR")) {
 				content += t.toString() + "\n";
 				System.out.println(t);
-			}
+			} 
 		}
 		Keyboard.textOutput(content);
 	}
