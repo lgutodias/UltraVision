@@ -20,6 +20,16 @@ public class Rental {
 		this.customer = customer;
 	}
 	
+	public static void displayRentals(List<Rental> rentals) {
+		String content = "";
+		for (Rental r : rentals) {
+			System.out.println(r);
+			content += r.toString() + "\n";
+		}
+		Keyboard.textOutput(content);
+	}
+	
+	
 	//Getters and Setters
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
@@ -47,7 +57,7 @@ public class Rental {
 		for (Title t : this.titles) {
 			content = "Customer [id=" + this.customer.getId() + ", customer="
 		+ this.customer.getFname() + "], Title[title=" + t.getTitle() 
-		+ ", genre=" + t.getGenre() + "]";
+		+ ", genre=" + t.getGenre() + ", title ID=" + t.getId() + "]";
 		}
 		return content;
    }

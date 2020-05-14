@@ -27,7 +27,7 @@ public final class TitleFactory {
 				System.out.println(t);
 			} 
 		}
-		Keyboard.textOutput(content);
+		//Keyboard.textOutput(content);
 	}
 	
 	

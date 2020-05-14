@@ -10,6 +10,7 @@ import interfaces.Title;
 import model.Customer;
 import model.CustomerFactory;
 import model.Keyboard;
+import model.Media;
 import model.Rental;
 import model.TitleFactory;
 
@@ -22,6 +23,7 @@ public class Main {
 	static int id = 1;
 	static int idc = 1;
 	static String planType;
+	//static String media;
 	
 	
 	public static void main(String[] args) {
@@ -63,11 +65,15 @@ public class Main {
 			
 			System.out.println("=====::::::::::| ULTRA VISION |::::::::::=====\n");
 			System.out.println("(1) RENT A TITLE");
-			System.out.println("(2) ADD ALBUM/LIVE CONCERT");
-			System.out.println("(3) ADD A MOVIE");
-			System.out.println("(4) ADD BOX SET");
-			System.out.println("(5) SEARCH TITLE");
-			System.out.println("(6) ADD CUSTOMER\n");
+			System.out.println("(2) RETURN A TITLE");
+			System.out.println("(3) SEARCH A TITLE");
+			System.out.println("(4) SEARCH A CUSTOMER");
+			System.out.println("(5) ADD AN ALBUM");
+			System.out.println("(6) ADD A LIVE CONCERT VIDEO");
+			System.out.println("(7) ADD A MOVIE");
+			System.out.println("(8) ADD A BOX SET");
+			System.out.println("(9) ADD A CUSTOMER");
+			System.out.println("(0) UPDATE A CUSTOMER\n");
 			System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			String option = Keyboard.textInput("ENTER AN OPTION: ");
 			
@@ -107,21 +113,50 @@ public class Main {
 			break;
 			
 			case "2":
+				//Option to return a Title
+				int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ");
+				
+				
+				
+				
+				
+				/*System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				TitleFactory.displayTitle(TitleFactory.searchTitle(rentals, idTitle));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");*/
+			break;
+			
+			case "5":
 				// Option to add an Album
 				String artist = Keyboard.textInput("ENTER ARTIST/BAND: ");
 				String title = Keyboard.textInput("ENTER TITLE: ");
 				String genre = Keyboard.textInput("ENTER GENRE: ");
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				/*String media  = "";
+				/*media  = "";
 				do {
 					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				} while (!isMedia(media));*/
+				} while (!= isMedia());*/
 				
 				titles.add(TitleFactory.makeAlbum(id++, artist, title, genre, year, media));
 			break;
 			
-			case "3":
+			case "6":
+				// Option to add a Live Concert Video
+				artist = Keyboard.textInput("ENTER ARTIST/BAND: ");
+				title = Keyboard.textInput("ENTER TITLE: ");
+				genre = Keyboard.textInput("ENTER GENRE: ");
+				year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
+				media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				/*media  = "";
+				do {
+					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
+				} while (!= isMedia());*/
+				
+				titles.add(TitleFactory.makeLiveConcertVideo(id++, artist, title, genre, year, media));
+			break;
+			
+			case "7":
 				//Option to add a Movie
 				title = Keyboard.textInput("ENTER MOVIE TITLE: ");
 				genre = Keyboard.textInput("ENTER GENRE: ");
@@ -133,7 +168,7 @@ public class Main {
 						media));
 			break;
 			
-			case "4":
+			case "8":
 				//Option to add a Box Set
 				title = Keyboard.textInput("ENTER BOX SET TITLE: ");
 				int season = Keyboard.numberInput("ENTER SEASON NUMBER: ");
@@ -145,14 +180,16 @@ public class Main {
 						media));
 			break;
 			
-			case "5":
+			case "4":
 				//Option to search a Title
 				String word = Keyboard.textInput("ENTER A KEY WORD: ");
-				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
 				TitleFactory.displayTitle(TitleFactory.searchTitle(titles, word));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			break;
 			
-			case "6":
+			case "9":
 				//Option to add a Customer
 				String fname = Keyboard.textInput("ENTER FIRST NAME: ");
 				String lname = Keyboard.textInput("ENTER LAST NAME: ");
@@ -175,8 +212,8 @@ public class Main {
 			}
 			
 			//Ternary operator
-			running = (Keyboard.textInput("=ENTER (Y)YES FOR MAIN MENU OR (N)NO CONTINUE=")
-					.equalsIgnoreCase("y")) ? true : false;
+			running = (Keyboard.textInput("PRESS ENTER FOR MAIN MENU OR X TO CLOSE THE SYSTEM")
+					.equalsIgnoreCase("x")) ? true : false;
 			
 			
 		} while(!running);
@@ -188,6 +225,9 @@ public class Main {
 		
 		System.out.println("========== Title ============");
 		TitleFactory.displayTitle(titles);
+		
+		System.out.println("========== Rentals ============");
+		Rental.displayRentals(rentals);
 		
 
 	}
@@ -205,7 +245,7 @@ public class Main {
 	
 	
 	/*public static boolean isMedia(String media) {
-		return media.equals(?:CD|DVD);
+		return media.matches(^(?:("CD"))|(?:("DVD"))$);
 	}*/
 	
 

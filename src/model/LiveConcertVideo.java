@@ -25,7 +25,9 @@ public final class LiveConcertVideo extends Titles implements Music
 
 	@Override
 	public String toString() {
-		return "LiveConcertVideo [artist=" + artist + "]";
+		return "LiveConcertVideo [id=" + getId() + ", artist=" + artist + ","
+				+ " title=" + getTitle() + ", genre=" + getGenre() + ","
+						+ " year=" + getYear() + ", media=" + getMedia() + "]";
 	}
 	
 }
