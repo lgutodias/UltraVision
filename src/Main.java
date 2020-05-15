@@ -98,8 +98,16 @@ public class Main {
 				}
 				
 				if(counter < 4) {
-					--idCust;
-					tf.display(titles, customers.get(idCust));
+					
+					// We are using Lambda expression
+					Customer c1 = customers.stream().filter(c-> idCust == c.getId()).findAny().orElse(null);	
+					
+					if(c1 == null) {
+						System.out.println("Id does not exist");
+						break;
+					}
+					
+					tf.display(titles, c1);
 					int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ")-1;
 					
 					Titles title = titles.get(idTitle);
