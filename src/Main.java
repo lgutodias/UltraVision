@@ -166,14 +166,8 @@ public class Main {
 				String genre = Keyboard.textInput("ENTER GENRE: ");
 				int year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				String media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				/*media  = "";
-				do {
-					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				} while (!= isMedia());*/
 				
-				Titles t1 = tf.makeAlbum(++id, artist, title, genre, year, media);
-				System.out.println(t1);
-				titles.add(t1);
+				titles.add(tf.makeAlbum(++id, artist, title, genre, year, media));
 				
 				Titles[] dataTitle = titles.toArray(new Titles[titles.size()]);
 				System.out.println("TITLE SAVED: " + fm.save(file, dataTitle));
@@ -187,12 +181,12 @@ public class Main {
 				genre = Keyboard.textInput("ENTER GENRE: ");
 				year = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				/*media  = "";
-				do {
-					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
-				} while (!= isMedia());*/
 				
-				titles.add(tf.makeLiveConcertVideo(id++, artist, title, genre, year, media));
+				titles.add(tf.makeLiveConcertVideo(++id, artist, title, genre, year, media));
+				
+				Titles[] dataTitle2 = titles.toArray(new Titles[titles.size()]);
+				System.out.println("TITLE SAVED: " + fm.save(file, dataTitle2));
+				
 			break;
 			
 			case "7":
@@ -203,8 +197,12 @@ public class Main {
 				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(tf.makeMovie(id++, director, title, genre, year,
+				titles.add(tf.makeMovie(++id, director, title, genre, year,
 						media));
+				
+				Titles[] dataTitle3 = titles.toArray(new Titles[titles.size()]);
+				System.out.println("TITLE SAVED: " + fm.save(file, dataTitle3));
+				
 			break;
 			
 			case "8":
@@ -215,8 +213,12 @@ public class Main {
 				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(tf.makeBoxSet(id++, title, season, genre, year,
+				titles.add(tf.makeBoxSet(++id, title, season, genre, year,
 						media));
+				
+				Titles[] dataTitle4 = titles.toArray(new Titles[titles.size()]);
+				System.out.println("TITLE SAVED: " + fm.save(file, dataTitle4));
+				
 			break;
 			
 			case "9":
@@ -233,7 +235,7 @@ public class Main {
 						creditcard = Keyboard.textInput("ENTER CREDIT CARD: ");
 					} while (!isCreditCard(creditcard));
 				
-				customers.add(cf.makeCustomer(idc++, fname, lname, email, creditcard, planType));
+				customers.add(cf.makeCustomer(++idc, fname, lname, email, creditcard, planType));
 				
 				Customer[] dataCustomer1 = customers.toArray(new Customer[customers.size()]);
 				System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomer1));
@@ -262,7 +264,7 @@ public class Main {
 					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
 								
 				} else {
-					System.out.println("Such ID doesn't exist");
+					System.out.println("INVALID ID!");
 				}
 
 			break;
@@ -327,10 +329,4 @@ public class Main {
 		return creditcard.matches("(\\d{4}[-. ]?){4}|\\d{4}[-. ]?\\d{6}[-. ]?\\d{5}");
 	}
 	
-	
-	/*public static boolean isMedia(String media) {
-		return media.matches(^(?:("CD"))|(?:("DVD"))$);
-	}*/
-	
-
 }
