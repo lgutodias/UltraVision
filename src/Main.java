@@ -5,13 +5,10 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import interfaces.Title;
 import model.Customer;
 import model.CustomerFactory;
 import model.FileManager;
@@ -27,8 +24,10 @@ public class Main {
 	static List<Rental> rentals = new ArrayList<>();
 	static File file = new File("titles.txt");
 	static File filec = new File("customers.txt");
+	static File filer = new File("rentals.txt");
 	static FileManager<Titles> fm = new FileManager<>();
 	static FileManager<Customer> cm = new FileManager<>();
+	static FileManager<Rental> rm = new FileManager<>();
 	
 	static int id = 1;
 	static int idc = 1;
@@ -41,7 +40,6 @@ public class Main {
 		boolean running = false;
 		TitleFactory tf = new TitleFactory();
 		CustomerFactory cf = new CustomerFactory();
-		
 		
 		
 		Titles[] dataTitles = fm.read(file);
@@ -60,6 +58,9 @@ public class Main {
 		idc = (greatestIdc.getId() > 1) ? greatestIdc.getId() : 1;
 		
 		
+		Rental[] dataRental = rm.read(filer);
+		
+		rentals = new ArrayList<>(Arrays.asList(dataRental));
 		
 		
 		
@@ -101,10 +102,13 @@ public class Main {
 					tf.display(titles, customers.get(idCust));
 					int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ")-1;
 					
-					Title title = titles.get(idTitle);
+					Titles title = titles.get(idTitle);
 					Customer customer = customers.get(idCust);
 					customer.getMemberid().addPoints(10);
 					rentals.add(new Rental(customer).addTitle(title));
+					
+					Rental[] dataRental2 = rentals.toArray(new Rental[rentals.size()]);
+					System.out.println("RENTAL SAVED: " + rm.save(filer, dataRental2));
 					
 					System.out.println("***TITLE SUCCESSFULLY RENTED***\n");
 					System.out.println("=====::::::::::| ============ |::::::::::=====\n");
@@ -117,29 +121,40 @@ public class Main {
 			
 			case "2":
 				//Option to return a Title
-				int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ");
-				
-				
-				/*System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				TitleFactory.displayTitle(TitleFactory.searchTitle(rentals, idTitle));
+				String word1 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				Rental.displayRentals(Rental.searchRental(rentals, word1));
 				System.out.println("\n");
-				System.out.println("=====::::::::::| ============ |::::::::::=====\n");*/
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+
+				int idCust2 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
+				idCust2--;
+				if(idCust2 >= 0 && idCust2 < rentals.size()) {
+
+					rentals.remove(idCust2);
+
+					Customer[] dataCustomers = customers.toArray(new Customer[customers.size()]);
+					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
+
+				} else {
+					System.out.println("INVALID ID!");
+				}
 			break;
 			
 			case "3":
 				//Option to search a Title
-				String word = Keyboard.textInput("ENTER A KEY WORD: ");
+				String word2 = Keyboard.textInput("ENTER A KEY WORD: ");
 				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				tf.displayTitle(tf.searchTitle(titles, word));
+				tf.displayTitle(tf.searchTitle(titles, word2));
 				System.out.println("\n");
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			break;
 			
 			case "4":
 				//Option to search a Customer
-				String word1 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				String word3 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
 				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				cf.displayCustomer(cf.searchCustomer(customers, word1));
+				cf.displayCustomer(cf.searchCustomer(customers, word3));
 				System.out.println("\n");
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			break;
@@ -227,17 +242,17 @@ public class Main {
 			
 			case "10":
 				//Option to update a Customer
-				String word2 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				String word4 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
 				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				cf.displayCustomer(cf.searchCustomer(customers, word2));
+				cf.displayCustomer(cf.searchCustomer(customers, word4));
 				System.out.println("\n");
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 				
-				int idCust2 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
-				idCust2--;
-				if(idCust2 >= 0 && idCust2 < customers.size()) {
+				int idCust3 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
+				idCust3--;
+				if(idCust3 >= 0 && idCust3 < customers.size()) {
 										
-					customers.get(idCust2).setFname(Keyboard.textInput("ENTER CUSTOMER'S NAME"))
+					customers.get(idCust3).setFname(Keyboard.textInput("ENTER CUSTOMER'S NAME"))
 						.setLname(Keyboard.textInput("ENTER LAST NAME: "))
 						.setEmail(Keyboard.textInput("ENTER EMAIL: "))
 						.setCreditcard(Keyboard.textInput("ENTER CREDIT CARD: "));
@@ -253,24 +268,24 @@ public class Main {
 			break;
 			
 			case "11":
-				//Option to update a Customer
-				String word3 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				//Option to delete a Customer
+				String word5 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
 				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				cf.displayCustomer(cf.searchCustomer(customers, word3));
+				cf.displayCustomer(cf.searchCustomer(customers, word5));
 				System.out.println("\n");
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 				
-				int idCust3 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
-				idCust3--;
-				if(idCust3 >= 0 && idCust3 < customers.size()) {
+				int idCust4 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
+				idCust4--;
+				if(idCust4 >= 0 && idCust4 < customers.size()) {
 										
-					customers.remove(idCust3);
+					customers.remove(idCust4);
 											
 					Customer[] dataCustomers = customers.toArray(new Customer[customers.size()]);
 					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
 								
 				} else {
-					System.out.println("Such ID doesn't exist");
+					System.out.println("INVALID ID!");
 				}
 
 			break;

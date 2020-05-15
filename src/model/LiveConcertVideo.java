@@ -27,7 +27,7 @@ public final class LiveConcertVideo extends Titles implements Music
 	public String toString() {
 		return "LiveConcertVideo [id=" + getId() + ", artist=" + artist + ","
 				+ " title=" + getTitle() + ", genre=" + getGenre() + ","
-						+ " year=" + getYear() + ", media=" + getMedia() + "]";
+				+ " year=" + getYear() + ", media=" + getMedia() + "]";
 	}
 	
 }

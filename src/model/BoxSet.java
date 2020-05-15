@@ -23,7 +23,9 @@ public final class BoxSet extends Titles implements TV<BoxSet> {
 		}
 		@Override
 		public String toString() {
-			return "BoxSet [season=" + season + "]";
+			return "BoxSet [id=" + getId() + ", title=" + getTitle() + ","
+					+ " season=" + season + ", genre=" + getGenre() + ","
+					+ " year+" + getYear() + ", media=" + getMedia() + "]";
 		}
 		
 				

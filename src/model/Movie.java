@@ -22,7 +22,9 @@ public final class Movie extends Titles implements Video<Movie> {
 	}
 	@Override
 	public String toString() {
-		return "Movie [director=" + director + "]";
+		return "Movie [id=" + getId() + ", title=" + getTitle() + ","
+				+ " genre=" + getGenre() + ", director=" + director + ","
+				+ " year+" + getYear() + ", media=" + getMedia() + "]";
 	}
 	
 }

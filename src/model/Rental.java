@@ -3,16 +3,19 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import interfaces.Title;
 
-public class Rental {
+public class Rental implements Serializable {
 	
+
+	private static final long serialVersionUID = 4352976132442076566L;
 	//Attributes
-	private List<Title> titles = new ArrayList<>();
+	private List<Titles> titles = new ArrayList<>();
 	private Customer customer;
 	
 	// Constructor
@@ -26,7 +29,19 @@ public class Rental {
 			System.out.println(r);
 			content += r.toString() + "\n";
 		}
-		Keyboard.textOutput(content);
+		//Keyboard.textOutput(content);
+	}
+	
+	public static List<Rental> searchRental(List<Rental> rental, String word) {
+
+		List<Rental> l = new ArrayList<>();
+		word = word.toLowerCase();
+		for (Rental r : rental) {
+			if (r.getCustomer().toString().contains(word)) {
+				l.add(r);
+			} 
+		}
+		return l;
 	}
 	
 	
@@ -37,14 +52,14 @@ public class Rental {
 	public Customer getCustomer() {
 		return this.customer;
 	}
-	public void setTitle(List<Title> titles) {
+	public void setTitle(List<Titles> titles) {
 		this.titles = titles;
 	}
-	public List<Title> getTitles(List<Title> titles){
+	public List<Titles> getTitles(List<Titles> titles){
 		return this.titles = titles;
 	}
 	// This method saves the title on the List
-	public Rental addTitle(Title title) {
+	public Rental addTitle(Titles title) {
 		this.titles.add(title);
 		return this;
 	}
@@ -54,7 +69,7 @@ public class Rental {
 		
 		String content = "";
 		
-		for (Title t : this.titles) {
+		for (Titles t : this.titles) {
 			content = "Customer [id=" + this.customer.getId() + ", customer="
 		+ this.customer.getFname() + "], Title[title=" + t.getTitle() 
 		+ ", genre=" + t.getGenre() + ", title ID=" + t.getId() + "]";
