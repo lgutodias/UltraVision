@@ -2,8 +2,14 @@ package model;
 
 import java.io.Serializable;
 
-public class MembershipCard implements Serializable{
+/** This Class we had Raul's orientation about how to use the serializable.
+ * 	Membershipcard implements serializable to flat the code structure into a binary.
+ *  It allows to be stored as an object in a text file. 
+ * 
+ */
 
+public class MembershipCard implements Serializable{
+	
 
 	private static final long serialVersionUID = 1338643662423772499L;
 	private int points;

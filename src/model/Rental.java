@@ -10,6 +10,12 @@ import java.util.List;
 
 import interfaces.Title;
 
+/** This Class we had Raul's orientation about how to use the serializable.
+ * 	Rental implements serializable to flat the code structure into a binary.
+ *  It allows to be stored as an object in a text file. 
+ * 
+ */
+
 public class Rental implements Serializable {
 	
 
@@ -23,15 +29,16 @@ public class Rental implements Serializable {
 		this.customer = customer;
 	}
 	
+	// Method to show titles on the rentals list 
 	public static void displayRentals(List<Rental> rentals) {
 		String content = "";
 		for (Rental r : rentals) {
 			System.out.println(r);
 			content += r.toString() + "\n";
 		}
-		//Keyboard.textOutput(content);
+		
 	}
-	
+	// Search method to get the titles rented 
 	public static List<Rental> searchRental(List<Rental> rental, String word) {
 
 		List<Rental> l = new ArrayList<>();

@@ -8,6 +8,12 @@ package model;
 
 import java.io.Serializable;
 
+
+/** This Class we had Raul's orientation about how to use the serializable.
+ * 	Customer implements Serializable to flat the code structure into a binary.
+ *  It allows to be stored as an object in a text file. 
+ * 
+ */
 public class Customer implements Serializable {
 	
 
