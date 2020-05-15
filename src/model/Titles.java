@@ -1,3 +1,7 @@
+/** 
+ * @author luiz
+ */
+
 package model;
 
 import java.io.Serializable;
@@ -7,12 +11,16 @@ import interfaces.Title;
 public abstract class Titles implements Title, Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	// Attributes
 	private int id;
 	private String title;
 	private String genre;
 	private int year;
 	private String media;
-
+	
+	
+	// Getters and Setters
 	@Override
 	public int getId() {
 		return this.id;
