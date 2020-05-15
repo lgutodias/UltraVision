@@ -11,6 +11,8 @@ public final class Album extends Titles implements Music<Album> {
 	//Attribute
 	private String artist;
 	
+		
+	
 	//Getter and Setter
 	@Override
 	public String getArtist() {

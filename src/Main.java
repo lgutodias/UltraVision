@@ -2,78 +2,81 @@
  * @author luiz
  */
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import interfaces.Title;
 import model.Customer;
 import model.CustomerFactory;
+import model.FileManager;
 import model.Keyboard;
-import model.Media;
 import model.Rental;
 import model.TitleFactory;
+import model.Titles;
 
 public class Main {
 	
-	static List<Title> titles = new ArrayList<>();
+	static List<Titles> titles = new ArrayList<>();
 	static List<Customer> customers = new ArrayList<>();
 	static List<Rental> rentals = new ArrayList<>();
+	static File file = new File("titles.txt");
+	static File filec = new File("customers.txt");
+	static FileManager<Titles> fm = new FileManager<>();
+	static FileManager<Customer> cm = new FileManager<>();
 	
 	static int id = 1;
 	static int idc = 1;
 	static String planType;
-	//static String media;
 	
 	
 	public static void main(String[] args) {
 		
 		
 		boolean running = false;
+		TitleFactory tf = new TitleFactory();
+		CustomerFactory cf = new CustomerFactory();
 		
-		//Default customers
-		customers.add(CustomerFactory.makeCustomer(idc++, "Daniel", "Deronda", "d.deronda@hotmail.com",
-				"4451653694824657", "PR"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Hans", "Castorp", "hanscastorp15@yahoo.com",
-				"5568925842276361", "Music"));
-		customers.add(
-				CustomerFactory.makeCustomer(idc++, "Tom", "Jones", "tjoness@hotmail.com", "5525344856451997", "Video"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Molly", "Bloom", "molly-bloom@gmail.com", "5468223523238497",
-				"TV"));
-		customers.add(CustomerFactory.makeCustomer(idc++, "Anne", "Elliot", "lady.aelliot@yahoo.com",
-				"4754995472713938", "PR"));
-		customers.add(
-				CustomerFactory.makeCustomer(idc++, "Louisa", "Pollit", "louisap@gmail.com", "4519242548200255", "Music"));
-
-		// Default titles
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "U2", "Innocence + Experience", "Rock", 2016, "Blu-ray"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Game of Thrones", 6, "Drama", 2016, "Blu-ray"));
-		titles.add(TitleFactory.makeMovie(id++, "Jake Kasdan", "Jumanji: Next Level", "Comedy", 2019, "Blu-ray"));
-		titles.add(TitleFactory.makeAlbum(id++, "Alicia Keys", "Girl On Fire", "R&B", 2012, "CD"));
-		titles.add(TitleFactory.makeBoxSet(id++, "Friends", 10, "Comedy", 2004, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steve McQueen", "12 Years a Slave", "Drama", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "Dua Lipa", "Future Nostalgia", "Pop", 2020, "CD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Foo Fighters", "Live at Wembley Stadium", "Rock", 2008,
-				"DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Frank Darabont", "The Shawshank Redemption", "Drama", 1995, "DVD"));
-		titles.add(TitleFactory.makeMovie(id++, "Steven Spielberg", "Saving Private Ryan", "War", 1998, "DVD"));
-		titles.add(TitleFactory.makeLiveConcertVideo(id++, "Bob Marley", "Uprising Live!", "Reggae", 2014, "DVD"));
-		titles.add(TitleFactory.makeAlbum(id++, "David Guetta", "7", "Dance", 2018, "CD"));
+		
+		
+		Titles[] dataTitles = fm.read(file);
+		
+		titles = new ArrayList<>(Arrays.asList(dataTitles));
+		
+		Titles greatestId = titles.stream().max(Comparator.comparing(Titles::getId)).orElseThrow(NoSuchElementException::new);
+		id = (greatestId.getId() > 1) ? greatestId.getId() : 1;
+		
+		
+		Customer[] dataCustomer = cm.read(filec);
+		
+		customers = new ArrayList<>(Arrays.asList(dataCustomer));
+		
+		Customer greatestIdc = customers.stream().max(Comparator.comparing(Customer::getId)).orElseThrow(NoSuchElementException::new);
+		idc = (greatestIdc.getId() > 1) ? greatestIdc.getId() : 1;
+		
+		
+		
 		
 		
 		do {
 			
 			System.out.println("=====::::::::::| ULTRA VISION |::::::::::=====\n");
-			System.out.println("(1) RENT A TITLE");
-			System.out.println("(2) RETURN A TITLE");
-			System.out.println("(3) SEARCH A TITLE");
-			System.out.println("(4) SEARCH A CUSTOMER");
-			System.out.println("(5) ADD AN ALBUM");
-			System.out.println("(6) ADD A LIVE CONCERT VIDEO");
-			System.out.println("(7) ADD A MOVIE");
-			System.out.println("(8) ADD A BOX SET");
-			System.out.println("(9) ADD A CUSTOMER");
-			System.out.println("(0) UPDATE A CUSTOMER\n");
+			System.out.println("(1)  RENT A TITLE");
+			System.out.println("(2)  RETURN A TITLE");
+			System.out.println("(3)  SEARCH A TITLE");
+			System.out.println("(4)  SEARCH A CUSTOMER");
+			System.out.println("(5)  ADD AN ALBUM");
+			System.out.println("(6)  ADD A LIVE CONCERT VIDEO");
+			System.out.println("(7)  ADD A MOVIE");
+			System.out.println("(8)  ADD A BOX SET");
+			System.out.println("(9)  ADD A CUSTOMER");
+			System.out.println("(10) UPDATE A CUSTOMER");
+			System.out.println("(11) DELETE A CUSTOMER\n");
 			System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			String option = Keyboard.textInput("ENTER AN OPTION: ");
 			
@@ -81,7 +84,7 @@ public class Main {
 			
 			case "1":
 				// Option to rent a title
-				CustomerFactory.displayCustomer(customers);
+				cf.displayCustomer(customers);
 				
 				int counter = 0;
 				int idCust = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
@@ -95,7 +98,7 @@ public class Main {
 				
 				if(counter < 4) {
 					--idCust;
-					TitleFactory.display(titles, customers.get(idCust));
+					tf.display(titles, customers.get(idCust));
 					int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ")-1;
 					
 					Title title = titles.get(idTitle);
@@ -117,13 +120,28 @@ public class Main {
 				int idTitle = Keyboard.numberInput("TYPE THE TITLE ID: ");
 				
 				
-				
-				
-				
 				/*System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
 				TitleFactory.displayTitle(TitleFactory.searchTitle(rentals, idTitle));
 				System.out.println("\n");
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");*/
+			break;
+			
+			case "3":
+				//Option to search a Title
+				String word = Keyboard.textInput("ENTER A KEY WORD: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				tf.displayTitle(tf.searchTitle(titles, word));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+			break;
+			
+			case "4":
+				//Option to search a Customer
+				String word1 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				cf.displayCustomer(cf.searchCustomer(customers, word1));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			break;
 			
 			case "5":
@@ -138,7 +156,13 @@ public class Main {
 					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				} while (!= isMedia());*/
 				
-				titles.add(TitleFactory.makeAlbum(id++, artist, title, genre, year, media));
+				Titles t1 = tf.makeAlbum(++id, artist, title, genre, year, media);
+				System.out.println(t1);
+				titles.add(t1);
+				
+				Titles[] dataTitle = titles.toArray(new Titles[titles.size()]);
+				System.out.println("TITLE SAVED: " + fm.save(file, dataTitle));
+				
 			break;
 			
 			case "6":
@@ -153,7 +177,7 @@ public class Main {
 					media = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				} while (!= isMedia());*/
 				
-				titles.add(TitleFactory.makeLiveConcertVideo(id++, artist, title, genre, year, media));
+				titles.add(tf.makeLiveConcertVideo(id++, artist, title, genre, year, media));
 			break;
 			
 			case "7":
@@ -164,7 +188,7 @@ public class Main {
 				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(TitleFactory.makeMovie(id++, director, title, genre, year,
+				titles.add(tf.makeMovie(id++, director, title, genre, year,
 						media));
 			break;
 			
@@ -176,17 +200,8 @@ public class Main {
 				year  = Keyboard.numberInput("ENTER YEAR OF RELEASE: ");
 				media  = Keyboard.textInput("ENTER MEDIA FORMAT: ");
 				
-				titles.add(TitleFactory.makeBoxSet(id++, title, season, genre, year,
+				titles.add(tf.makeBoxSet(id++, title, season, genre, year,
 						media));
-			break;
-			
-			case "4":
-				//Option to search a Title
-				String word = Keyboard.textInput("ENTER A KEY WORD: ");
-				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
-				TitleFactory.displayTitle(TitleFactory.searchTitle(titles, word));
-				System.out.println("\n");
-				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			break;
 			
 			case "9":
@@ -203,7 +218,61 @@ public class Main {
 						creditcard = Keyboard.textInput("ENTER CREDIT CARD: ");
 					} while (!isCreditCard(creditcard));
 				
-				customers.add(CustomerFactory.makeCustomer(idc++, fname, lname, email, creditcard, planType));
+				customers.add(cf.makeCustomer(idc++, fname, lname, email, creditcard, planType));
+				
+				Customer[] dataCustomer1 = customers.toArray(new Customer[customers.size()]);
+				System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomer1));
+				
+			break;
+			
+			case "10":
+				//Option to update a Customer
+				String word2 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				cf.displayCustomer(cf.searchCustomer(customers, word2));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+				
+				int idCust2 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
+				idCust2--;
+				if(idCust2 >= 0 && idCust2 < customers.size()) {
+										
+					customers.get(idCust2).setFname(Keyboard.textInput("ENTER CUSTOMER'S NAME"))
+						.setLname(Keyboard.textInput("ENTER LAST NAME: "))
+						.setEmail(Keyboard.textInput("ENTER EMAIL: "))
+						.setCreditcard(Keyboard.textInput("ENTER CREDIT CARD: "));
+					
+					
+					Customer[] dataCustomers = customers.toArray(new Customer[customers.size()]);
+					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
+								
+				} else {
+					System.out.println("Such ID doesn't exist");
+				}
+
+			break;
+			
+			case "11":
+				//Option to update a Customer
+				String word3 = Keyboard.textInput("ENTER CUSTOMER'S NAME OR SURNAME: ");
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				cf.displayCustomer(cf.searchCustomer(customers, word3));
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+				
+				int idCust3 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
+				idCust3--;
+				if(idCust3 >= 0 && idCust3 < customers.size()) {
+										
+					customers.remove(idCust3);
+											
+					Customer[] dataCustomers = customers.toArray(new Customer[customers.size()]);
+					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
+								
+				} else {
+					System.out.println("Such ID doesn't exist");
+				}
+
 			break;
 			
 			default:
@@ -221,10 +290,10 @@ public class Main {
 		
 		
 		System.out.println("========== Customer ============");
-		CustomerFactory.displayCustomer(customers);
+		cf.displayCustomer(customers);
 		
 		System.out.println("========== Title ============");
-		TitleFactory.displayTitle(titles);
+		tf.displayTitle(titles);
 		
 		System.out.println("========== Rentals ============");
 		Rental.displayRentals(rentals);

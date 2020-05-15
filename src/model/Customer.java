@@ -6,8 +6,12 @@
 
 package model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 	
+
+	private static final long serialVersionUID = -5384152674287010033L;
 	//Attributes
 	private String fname;
 	private String lname;

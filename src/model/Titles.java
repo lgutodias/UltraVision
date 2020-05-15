@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 import interfaces.Title;
 
-public abstract class Titles implements Title {
+public abstract class Titles implements Title, Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String title;
 	private String genre;

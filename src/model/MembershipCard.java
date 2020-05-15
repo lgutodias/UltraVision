@@ -1,8 +1,12 @@
 package model;
 
-public class MembershipCard {
+import java.io.Serializable;
 
-	   private int points;
+public class MembershipCard implements Serializable{
+
+
+	private static final long serialVersionUID = 1338643662423772499L;
+	private int points;
 	   private boolean freeRentAllowed;
 	   
 	   public void addPoints(int points){
