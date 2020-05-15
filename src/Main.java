@@ -19,6 +19,7 @@ import model.Titles;
 
 public class Main {
 	
+	// Attributes
 	static List<Titles> titles = new ArrayList<>();
 	static List<Customer> customers = new ArrayList<>();
 	static List<Rental> rentals = new ArrayList<>();
@@ -31,9 +32,10 @@ public class Main {
 	
 	static int id = 1;
 	static int idc = 1;
+	static int idr = 1;
 	static String planType;
 	
-	
+	// Main method
 	public static void main(String[] args) {
 		
 		
@@ -46,6 +48,7 @@ public class Main {
 		
 		titles = new ArrayList<>(Arrays.asList(dataTitles));
 		
+		// Comparator used to catch the last Title ID number when adding a new Title on the list (avoid duplicated IDs)
 		Titles greatestId = titles.stream().max(Comparator.comparing(Titles::getId)).orElseThrow(NoSuchElementException::new);
 		id = (greatestId.getId() > 1) ? greatestId.getId() : 1;
 		
@@ -54,6 +57,7 @@ public class Main {
 		
 		customers = new ArrayList<>(Arrays.asList(dataCustomer));
 		
+		// Comparator used to catch the last Customer ID number when adding a new Title on the list (avoid duplicated IDs)
 		Customer greatestIdc = customers.stream().max(Comparator.comparing(Customer::getId)).orElseThrow(NoSuchElementException::new);
 		idc = (greatestIdc.getId() > 1) ? greatestIdc.getId() : 1;
 		
@@ -61,9 +65,10 @@ public class Main {
 		Rental[] dataRental = rm.read(filer);
 		
 		rentals = new ArrayList<>(Arrays.asList(dataRental));
+		Rental greatestIdr = rentals.stream().max(Comparator.comparing(Rental::getId)).orElseThrow(NoSuchElementException::new);
+		idr = (greatestIdr.getId() > 1) ? greatestIdr.getId() : 1;
 		
-		
-		
+		// Do loop that runs the Main Menu
 		do {
 			
 			System.out.println("=====::::::::::| ULTRA VISION |::::::::::=====\n");
@@ -77,10 +82,14 @@ public class Main {
 			System.out.println("(8)  ADD A BOX SET");
 			System.out.println("(9)  ADD A CUSTOMER");
 			System.out.println("(10) UPDATE A CUSTOMER");
-			System.out.println("(11) DELETE A CUSTOMER\n");
+			System.out.println("(11) DELETE A CUSTOMER");
+			System.out.println("(12) SHOW RENTALS LIST");
+			System.out.println("(13) SHOW TITLES LIST");
+			System.out.println("(14) SHOW CUSTOMERS LIST\n");
 			System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 			String option = Keyboard.textInput("ENTER AN OPTION: ");
 			
+			// Beginning of a Switch statement that allows the user to catch one option in the Main Menu
 			switch (option) {
 			
 			case "1":
@@ -103,7 +112,7 @@ public class Main {
 					Customer c1 = customers.stream().filter(c-> idCust == c.getId()).findAny().orElse(null);	
 					
 					if(c1 == null) {
-						System.out.println("Id does not exist");
+						System.out.println("INVALID ID!");
 						break;
 					}
 					
@@ -113,7 +122,7 @@ public class Main {
 					Titles title = titles.get(idTitle);
 					Customer customer = customers.get(idCust);
 					customer.getMemberid().addPoints(10);
-					rentals.add(new Rental(customer).addTitle(title));
+					rentals.add(new Rental(customer).addTitle(title).setId(++idr));
 					
 					Rental[] dataRental2 = rentals.toArray(new Rental[rentals.size()]);
 					System.out.println("RENTAL SAVED: " + rm.save(filer, dataRental2));
@@ -136,17 +145,19 @@ public class Main {
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 
 				int idCust2 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
-				idCust2--;
-				if(idCust2 >= 0 && idCust2 < rentals.size()) {
-
-					rentals.remove(idCust2);
-
-					Customer[] dataCustomers = customers.toArray(new Customer[customers.size()]);
-					System.out.println("CUSTOMER SAVED: " + cm.save(filec, dataCustomers));
-
-				} else {
-					System.out.println("INVALID ID!");
+				
+				Rental r1 = rentals.stream().filter(r-> idCust2 == r.getId()).findAny().orElse(null);	
+				
+				if(r1 == null) {
+					System.out.println("Id does not exist");
+					break;
 				}
+				
+				rentals.remove(r1);
+
+				Rental[] dataRental1 = rentals.toArray(new Rental[rentals.size()]);
+				System.out.println("RENTAL SAVED: " + rm.save(filec, dataRental1));
+
 			break;
 			
 			case "3":
@@ -259,7 +270,7 @@ public class Main {
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 				
 				int idCust3 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
-				idCust3--;
+				--idCust3;
 				if(idCust3 >= 0 && idCust3 < customers.size()) {
 										
 					customers.get(idCust3).setFname(Keyboard.textInput("ENTER CUSTOMER'S NAME"))
@@ -286,7 +297,7 @@ public class Main {
 				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
 				
 				int idCust4 = Keyboard.numberInput("TYPE THE CUSTOMER ID: ");
-				idCust4--;
+				--idCust4;
 				if(idCust4 >= 0 && idCust4 < customers.size()) {
 										
 					customers.remove(idCust4);
@@ -300,30 +311,44 @@ public class Main {
 
 			break;
 			
+			case "12":
+				// Option to show rentals entire list
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				Rental.displayRentals(rentals);
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+			break;
+			
+			case "13":
+				// Option to show titles entire list
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				tf.displayTitle(titles);
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+			break;
+			
+			case "14":
+				// Option to show customers entire list
+				System.out.println("=====:::::::: | SEARCH RESULTS | ::::::::=====\n");
+				cf.displayCustomer(customers);
+				System.out.println("\n");
+				System.out.println("=====::::::::::| ============ |::::::::::=====\n");
+			break;
+			
 			default:
 				System.out.println("*** SORRY! INVALID OPTION ***\n");
 				break;
 			}
+			// End of the Switch statement
 			
-			//Ternary operator
+			
+			//Ternary operator that allows the user to keep running the system or end it
 			running = (Keyboard.textInput("PRESS ENTER FOR MAIN MENU OR X TO CLOSE THE SYSTEM")
 					.equalsIgnoreCase("x")) ? true : false;
 			
 			
 		} while(!running);
 		
-		
-		
-		System.out.println("========== Customer ============");
-		cf.displayCustomer(customers);
-		
-		System.out.println("========== Title ============");
-		tf.displayTitle(titles);
-		
-		System.out.println("========== Rentals ============");
-		Rental.displayRentals(rentals);
-		
-
 	}
 	
 	// Boolean to validate Email pattern

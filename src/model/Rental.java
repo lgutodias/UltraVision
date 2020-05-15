@@ -23,6 +23,7 @@ public class Rental implements Serializable {
 	//Attributes
 	private List<Titles> titles = new ArrayList<>();
 	private Customer customer;
+	private int id;
 	
 	// Constructor
 	public Rental(Customer customer) {
@@ -65,6 +66,16 @@ public class Rental implements Serializable {
 	public List<Titles> getTitles(List<Titles> titles){
 		return this.titles = titles;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public Rental setId(int id) {
+		this.id = id;
+		return this;
+	}
+
 	// This method saves the title on the List
 	public Rental addTitle(Titles title) {
 		this.titles.add(title);
@@ -77,7 +88,8 @@ public class Rental implements Serializable {
 		String content = "";
 		
 		for (Titles t : this.titles) {
-			content = "Customer [id=" + this.customer.getId() + ", customer="
+			content = "Rental Number(" + this.id + ") Customer [id=" 
+					+ this.customer.getId() + ", customer="
 		+ this.customer.getFname() + "], Title[title=" + t.getTitle() 
 		+ ", genre=" + t.getGenre() + ", title ID=" + t.getId() + "]";
 		}
