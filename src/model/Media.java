@@ -25,12 +25,7 @@ public static void validMedia() {
 		System.out.println("TYPE CD, DVD OR BLU-RAY");
 	}
 	
-	
-	
-	
-	
-	
-	
+		
 	//Getters and Setters
 	public String getCd() {
 		return CD;

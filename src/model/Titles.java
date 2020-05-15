@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import interfaces.Title;
 
+
 public abstract class Titles implements Title, Serializable {
 	
 	private static final long serialVersionUID = 1L;

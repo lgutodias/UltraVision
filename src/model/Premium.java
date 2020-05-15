@@ -13,6 +13,7 @@ public class Premium implements MembershipPlan<Title> {
 	//Attribute
 	private List<Title> titles = new ArrayList<>();
 	
+	// CRUD - Create, Read, Update and Delete
 	@Override
 	public List<Title> getAll(){
 		return this.titles;
@@ -37,6 +38,5 @@ public class Premium implements MembershipPlan<Title> {
 	public Title get(int index) {
 		return this.titles.get(index);
 	}
-	
 	
 }
